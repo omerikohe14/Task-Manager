@@ -1,0 +1,57 @@
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  list-style-type: none;
+  text-align: center;
+}
+
+.completed-task {
+  text-decoration: line-through;
+}
+
+.tab-list > span {
+  padding: 5px 8px;
+  border: 1px solid rgb(13, 159, 204);
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-top:20px ;
+}
+
+.tab-list > span.active {
+  background-color: rgb(13, 159, 204);
+  margin-top: 20px;
+  color: white;
+}
+
+.addtask {
+  display: flex;
+  margin-left: 80px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: rgb(227, 180, 93);
+}
+
+.welcome {
+  margin-top: 100px;
+  margin-left: 80px;
+  text-align: left;
+}
+
+.buttons {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end; 
+}
+
+.edit {
+  background-color: rgb(44, 154, 182);
+}
+  
+
+.delete {
+  background-color: rgb(196, 81, 81);
+} 
+

@@ -1,0 +1,132 @@
+/* CSS for the login page */
+
+.login {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  label,
+  button {
+    margin-top: 1rem;
+  }
+  button {
+    padding: 0.5rem;
+  }
+  
+  input[type="text"],
+  input[type="pwd"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  button[type="submit"] {
+    width: 95%;
+    padding: 10px;
+    background-color: #4d7db0;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #4d7db0;
+  }
+  
+  button:disabled {
+    background-color: #abadae;
+  }
+  
+  .links {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: #4d7db0;
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+  
+  .links a:hover {
+    color: #4d7db0;
+  }
+  
+  .instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+  }
+  
+  .instructions>svg {
+    margin-right: 0.25rem;
+  }
+  
+  .offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  .valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+  }
+  
+  .invalid {
+    color: rgb(180, 48, 48);
+    margin-left: 0.25rem;
+  }
+  
+  .errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    width: 89%;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 0.5rem;
+  }
+  
+  .line {
+    display: inline-block;
+  }
