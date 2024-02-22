@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./styles/TaskModal.css";
+import "../styles/TaskModal.css";
 const TaskModal = ({ activeTask, toggle, onSave }) => {
   const [currentTask, setCurrentTask] = useState(activeTask);
 

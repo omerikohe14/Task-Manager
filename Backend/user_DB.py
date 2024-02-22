@@ -62,7 +62,6 @@ def delete_task(data):
     username = data['username']
     password = data['password']
     task = data['task']
-    print(task)
     user_exist = users_collection.find_one({"username": username , "password": password})
     if not user_exist:
         print("the current user not exist")

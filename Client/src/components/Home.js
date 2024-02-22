@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles/Home.css';
+import '../styles/Home.css';
 import { Link, useNavigate } from 'react-router-dom';
-import task_manager from './task manager.jpg';
+import task_manager from '../task manager.jpg';
 
 function Home() {
   const navigate = useNavigate();

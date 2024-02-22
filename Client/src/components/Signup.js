@@ -3,7 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
 import { signup_url } from './ServerURLs';
-import './styles/signup.css';
+import '../styles/signup.css';
 import axios from 'axios';
 
 const USER_REGEX = /[A-z][A-z0-9-_]{3,23}$/;

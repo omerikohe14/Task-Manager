@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./styles/Tasks.css";
+import "../styles/Tasks.css";
 import TaskModal from "./TaskModal";
 import { add_tasks_url, delete_tasks_url, edit_tasks_url } from "./ServerURLs";
 import axios from "axios";
