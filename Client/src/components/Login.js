@@ -29,8 +29,7 @@ const LogIn = ({onLogin}) => {
                 else{
                     throw Error('could not fetch the data');
                 }
-                }
-                console.log(response.data) 
+                } 
                 onLogin(response.data)
                 setSuccess(true)
                 setIsPending(false)

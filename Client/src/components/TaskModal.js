@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../styles/TaskModal.css";
-const TaskModal = ({ activeTask, toggle, onSave }) => {
+
+const TaskModal = ({ activeTask, toggle, onSave,}) => {
   const [currentTask, setCurrentTask] = useState(activeTask);
+  
 
   useEffect(() => {
     setCurrentTask(activeTask);
@@ -9,7 +11,7 @@ const TaskModal = ({ activeTask, toggle, onSave }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedTask = {...currentTask, [name]: value };
+    const updatedTask = { ...currentTask, [name]: value };
     setCurrentTask(updatedTask);
   };
 
@@ -30,6 +32,7 @@ const TaskModal = ({ activeTask, toggle, onSave }) => {
               <label>Title:</label>
               <input type="text" name="title" value={currentTask.title} onChange={handleChange} />
             </div>
+            <input type="hidden" name="task_id" value={currentTask.task_id} />
             <div className="form-group"/>
           </form>
         </div>

@@ -14,96 +14,118 @@ const Tasks = ({ userInfo }) => {
     completed: false,
     task_id: "",
   });
+  const [editedTask, setEditedTask] = useState(null);
 
   useEffect(() => {
     userInfo ? setTaskList(userInfo.Tasks) : setTaskList([]);
-  }, [userInfo]
-  );
+  }, [userInfo]);
   
   const toggleModal = () => {
+    if (modal) {
+      setEditedTask(null);
+    }
     setModal(!modal);
   };
 
-  const handleSubmit = (updatedtask) => {  
-    if (updatedtask.title.trim() !== "") {
+  const createNewTask = () => {
+    setActivetask({ title: "", completed: false});
+    toggleModal();
+  };
+
+  const handleAddSubmit = (newtask) => {
+    if (newtask.title.trim() !== "") {
+      const currentTask = {username: userInfo.username,
+                           password: userInfo.password,
+                           task: newtask}               
+      axios.post(add_tasks_url,currentTask)
+      .then((response) => {
+          if(response.status !== 200){
+            throw new Error(response.status);
+          }
+        const temptask = response.data.newtask;
+        const updatedTaskList = [...tasklist, temptask];
+        setTaskList(updatedTaskList);
+        userInfo.Tasks = updatedTaskList;
+        toggleModal()
+        })};
+  };
+
+  const handleEdit = (editTask) => {
+    setActivetask({ ...editTask, task_id: editTask.task_id });
+    setEditedTask(editTask);
+    toggleModal();
+  };
+
+  const handleEditSubmit = (updatedtask) => {
     const currentTask = {username: userInfo.username,
                          password: userInfo.password,
                          task: updatedtask}
-    axios.post(add_tasks_url,currentTask)
+    axios.post(edit_tasks_url, currentTask)
+    .then((response) => {
+    if(response.status !== 200){
+      throw new Error(response.status);
+    }
+    const updatedTaskList = tasklist.map((task) =>
+      task.task_id === updatedtask.task_id ? updatedtask : task
+    );
+    setTaskList(updatedTaskList);
+    userInfo.Tasks = updatedTaskList;
+    setEditedTask(null);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  };
+
+  const handleSubmit = (input_task) => {  
+    console.log(input_task)
+    if (editedTask) {
+      handleEditSubmit(input_task);
+    } else {
+      handleAddSubmit(input_task);
+    }
+  };
+  
+  const handleCompletedToggle = (task) => {
+    const updatedTaskList = tasklist.map((t) =>
+      t.task_id === task.task_id ? { ...t, completed: !t.completed } : t
+    );
+    const currentTask = { username: userInfo.username,
+                          password: userInfo.password, 
+                          task: { ...task, completed: !task.completed } };
+
+    axios.post(edit_tasks_url, currentTask)
       .then((response) => {
-          if(response.status !== 200){
-              throw new Error(response.status);
-          }
-        setTaskList([...tasklist, updatedtask]);
-        userInfo.Tasks = [...tasklist, updatedtask];
-        toggleModal()
-      })};
-  }
-  const handleDelete = (tasktodelete) => {
+        if (response.status !== 200) {
+          throw new Error(response.status);
+        }
+        setTaskList(updatedTaskList);
+        userInfo.Tasks = updatedTaskList;
+      })
+      .catch((error) => {
+        console.error("Error updating task:", error);
+      });
+  };
+    
+  const handleDelete = (task_to_delete) => {
     const currentTask = {username: userInfo.username,
                          password: userInfo.password,
-                         task: tasktodelete}
+                         task: task_to_delete}
+    console.log(currentTask.task)
     axios.post(delete_tasks_url, currentTask)
    .then((response) => {
         if(response.status !== 200){
             throw new Error(response.status);
-        } 
-    const updatedTaskList = tasklist.filter((task) => task !== tasktodelete);
+        }
+    const updatedTaskList = tasklist.filter((task) => task !== task_to_delete);
     setTaskList(updatedTaskList);
     userInfo.Tasks = updatedTaskList;
-  })
-  .catch(err => {
-    console.log(err)
-  })
+    })
+    .catch(err => {
+      console.log(err)
+    })
   };
 
-  const createNewTask = () => {
-      setActivetask({ title: "", completed: false});
-      toggleModal();
-  };
-  
-  const handleEdit = (task) => {
-    toggleModal();
-    const currentTask = {username: userInfo.username,
-                         password: userInfo.password,
-                         task: task}
-    axios.post(edit_tasks_url, currentTask)
-    .then((response) => {
-         if(response.status !== 200){
-             throw new Error(response.status);
-         } 
-    const updatedTaskList = tasklist.filter((task) => task !== task);
-    setTaskList(updatedTaskList);
-    userInfo.Tasks = updatedTaskList;
- 
-   })
-   .catch(err => {
-     console.log(err)
-   })
-  };
-
-    const handleCompletedToggle = (task) => {
-      const updatedTaskList = tasklist.map((t) =>
-        t.id === task.id ? { ...t, completed: !t.completed } : t
-      );
-
-      const currentTask = { username: userInfo.username,
-                            password: userInfo.password, 
-                            task: { ...task, completed: !task.completed } };
-
-      axios.post(edit_tasks_url, currentTask)
-        .then((response) => {
-          if (response.status !== 200) {
-            throw new Error(response.status);
-          }
-          setTaskList(updatedTaskList);
-          userInfo.Tasks = updatedTaskList;
-        })
-        .catch((error) => {
-          console.error("Error updating task:", error);
-        });
-    };
-    
   const displayCompleted = (status) => {
     setViewCompleted(status);
   };
@@ -128,9 +150,9 @@ const Tasks = ({ userInfo }) => {
   };
 
   const renderTasks = () => {  
-    const newTasksList = tasklist.filter((task) => task.completed === viewCompleted);
+    const newTasksList = tasklist.filter(task => task.completed === viewCompleted);
     return newTasksList.map((task) => (
-      <li key={task.id} className="list">
+      <li key={task.task_id} className="list">
         <div>
           <span
             className={`${viewCompleted ? "completed-task" : ""}`}>

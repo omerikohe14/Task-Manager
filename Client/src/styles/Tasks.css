@@ -7,10 +7,6 @@
   text-align: center;
 }
 
-.completed-task {
-  text-decoration: line-through;
-}
-
 .tab-list > span {
   padding: 5px 8px;
   border: 1px solid rgb(13, 159, 204);
@@ -28,7 +24,7 @@
 
 .addtask {
   display: flex;
-  margin-left: 80px;
+  margin-left: 50px;
   margin-top: 50px;
   margin-bottom: 50px;
   background-color: rgb(227, 180, 93);
@@ -36,8 +32,9 @@
 
 .welcome {
   margin-top: 100px;
-  margin-left: 80px;
+  margin-left: 50px;
   text-align: left;
+  font-weight: bold;
 }
 
 .buttons {

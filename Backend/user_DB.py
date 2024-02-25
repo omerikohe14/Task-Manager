@@ -55,7 +55,7 @@ def add_task(data):
     users_collection.update_one({"username": username}, 
                                 {"$push": {"Tasks": task_data}})
     client.close()
-    return jsonify({"success": "Task added successfully"}), 200
+    return jsonify({"newtask": task_data }), 200
 
 def delete_task(data):
     client, users_collection = mongodb_collection_setup()
@@ -74,7 +74,7 @@ def delete_task(data):
     if task_data in user_exist['Tasks']:
         users_collection.update_one({"username": username}, {"$pull": {"Tasks": task_data}})
     client.close()  
-    return jsonify({"success": "Task deleted successfully"}), 200
+    return jsonify({"Deleted task": task_data}), 200
 
 def edit_task(data):
     client, users_collection = mongodb_collection_setup()
@@ -94,7 +94,7 @@ def edit_task(data):
     updated_tasklist.append(task_data)
     users_collection.update_one({"username": username}, {"$set": {"Tasks": updated_tasklist}})
     client.close()
-    return jsonify({"success": "Task edited successfully"}), 200
+    return jsonify({"editTask": task_data }), 200
 
 def mongodb_collection_setup():
     connection_string = api_keys.mongoDB_key
