@@ -78,7 +78,6 @@ const Tasks = ({ userInfo }) => {
   };
 
   const handleSubmit = (input_task) => {  
-    console.log(input_task)
     if (editedTask) {
       handleEditSubmit(input_task);
     } else {
@@ -111,7 +110,6 @@ const Tasks = ({ userInfo }) => {
     const currentTask = {username: userInfo.username,
                          password: userInfo.password,
                          task: task_to_delete}
-    console.log(currentTask.task)
     axios.post(delete_tasks_url, currentTask)
    .then((response) => {
         if(response.status !== 200){
