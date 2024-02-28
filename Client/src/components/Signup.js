@@ -48,8 +48,7 @@ const SignUp = () => {
     }, [username, pwd, confirmPwd])
 
     const handleClick = () => (e) => {
-  
-      e.preventDefault();
+        e.preventDefault();
         const SignUpDetails = { "username": username, "password": pwd}
         axios.post(signup_url, SignUpDetails)
             .then((response) => {

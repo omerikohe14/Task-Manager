@@ -12,7 +12,7 @@ function App() {
   const [userInfo, setUserInfo] = useState();
   const handleLogin = (userData) => {
     setUserInfo(userData);
-    }
+  }
   const handleLogout = () => {
     setUserInfo(null);
   }

@@ -21,7 +21,7 @@ const Navbar = ({ userInfo, onLogout }) => {
               color: 'white',
               backgroundColor: '#0056b3',
               borderRadius: '4px'
-            }}>Log-in</Link>
+            }}>Login</Link>
           </div>
         )}
       </div>
