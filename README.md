@@ -4,13 +4,6 @@
 This project is a web application that allows users to manage their tasks. The application is built using React for the frontend and Python Flask for the backend.
 
 
-## Project Architecture
-
-<img src="https://github.com/Oribenda/Flight-Search-Website/assets/138500747/dd960279-1546-400d-b53e-336589d8f382" alt="Image Alt Text" width="490" height="400">
-
-
-
-
 ## Table of Contents
 
   - [Task Manager](#Task-Manager-website)
